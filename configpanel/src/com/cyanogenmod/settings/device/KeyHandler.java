@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.media.IAudioService;
 import android.os.PowerManager;
 import android.os.RemoteException;
@@ -18,8 +17,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.android.internal.os.DeviceKeyHandler;
-import static com.android.internal.util.gummy.GummyConstants.*;
 import com.android.internal.util.gummy.GummyHelpers;
+import com.android.internal.util.gummy.TorchConstants;
 import com.android.internal.widget.LockPatternUtils;
 
 public class KeyHandler implements DeviceKeyHandler {
@@ -94,7 +93,8 @@ public class KeyHandler implements DeviceKeyHandler {
             break;
         case GESTURE_V_SCANCODE:
             if (GummyHelpers.isTorchAvailable(mContext)) {
-                mContext.sendBroadcast(new Intent("net.cactii.flash2.TOGGLE_FLASHLIGHT"));
+                Intent torchIntent = new Intent(TorchConstants.ACTION_TOGGLE_STATE);
+                mContext.sendBroadcast(torchIntent);
             }
             consumed = true;
             break;
