@@ -60,6 +60,14 @@ public class AdaptiveBacklight {
     }
 
     /**
+     * This method returns the current mode of the configurable adaptive backlight technology.
+     *
+     */
+    public static int getcurrentMode() {
+        return Integer.parseInt(FileUtils.readOneLine(FILE_CABC));
+    }
+
+    /**
      * This method allows to setup adaptive backlight technology status.
      *
      * @param status The new adaptive backlight status
